@@ -34,6 +34,7 @@ public class Main {
                                             u.getPinCode());
                     break;
                 case 2:
+                    login();
                     break;
                 case 0:
                     exit = true;
@@ -43,8 +44,6 @@ public class Main {
             }
         }
 
-
-        //Todo: Logga in
 
         //Todo: Meny Efter inloggning
 
@@ -65,7 +64,6 @@ public class Main {
                             "0. Exit");
     }
 
-    //Todo: Skapa användare
     public static void createUser() {
         System.out.println("Personal nr:");
         String personalNumber = scn.nextLine();
@@ -74,6 +72,29 @@ public class Main {
         int pinCode = scn.nextInt();
 
         users.add(new User(personalNumber, pinCode));
+
+    }
+    //Todo: login
+    public static void login(){
+        System.out.println("Personal nr:");
+        String personalNumber = scn.nextLine();
+        for(User user : users)
+            if(!user.getPersonalNumber().equals(personalNumber)){
+                System.out.println("User not found!");
+                break;
+            }
+
+        int tries = 1;
+        while (tries < 4){
+            System.out.println("PIN: ");
+            int pinCode = scn.nextInt();
+            if(user.getPinCode() != pinCode){
+                System.out.println("Incorrect!");
+                tries++;
+            } else
+                System.out.println("logged in");
+
+        }
 
     }
 }
